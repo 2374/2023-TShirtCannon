@@ -8,7 +8,6 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-
 public class DrivetrainSubsystem extends SubsystemBase {
 
     // private TalonSRX MasterLeftDriveMotor;
@@ -25,24 +24,27 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     private MotorControllerGroup leftGroup;
     private MotorControllerGroup rightGroup;
-   
-    
+
     public DrivetrainSubsystem() {
         FrontLeftDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_FRONT_LEFT);
         FrontRightDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_FRONT_RIGHT);
         BackLeftDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_BACK_LEFT);
         BackRightDriveMotor = new WPI_TalonSRX(Constants.TALON_DRIVE_BACK_RIGHT);
 
+        FrontLeftDriveMotor.setNeutralMode(NeutralMode.Brake);
+        BackLeftDriveMotor.setNeutralMode(NeutralMode.Brake);
+        FrontRightDriveMotor.setNeutralMode(NeutralMode.Brake);
+        BackRightDriveMotor.setNeutralMode(NeutralMode.Brake);
+
         FrontLeftDriveMotor.setInverted(true);
         BackLeftDriveMotor.setInverted(true);
         FrontRightDriveMotor.setInverted(false);
         BackRightDriveMotor.setInverted(false);
-        BackRightDriveMotor.follow( FrontRightDriveMotor);
-        BackLeftDriveMotor.follow( FrontLeftDriveMotor);
-        
-        leftGroup = new MotorControllerGroup(FrontLeftDriveMotor,BackLeftDriveMotor);
-        rightGroup = new MotorControllerGroup(FrontRightDriveMotor,BackRightDriveMotor);
-        
+        BackRightDriveMotor.follow(FrontRightDriveMotor);
+        BackLeftDriveMotor.follow(FrontLeftDriveMotor);
+
+        leftGroup = new MotorControllerGroup(FrontLeftDriveMotor, BackLeftDriveMotor);
+        rightGroup = new MotorControllerGroup(FrontRightDriveMotor, BackRightDriveMotor);
 
         robotDrive = new DifferentialDrive(leftGroup, rightGroup);
         // robotDrive.setSafetyEnabled(false);
@@ -60,18 +62,20 @@ public class DrivetrainSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
 
-        // SmartDashboard.putNumber("Front Left Module Angle", Math.toDegrees(frontLeftModule.getCurrentAngle()));
-        // SmartDashboard.putNumber("Front Right Module Angle", Math.toDegrees(frontRightModule.getCurrentAngle()));
-        // SmartDashboard.putNumber("Back Left Module Angle", Math.toDegrees(backLeftModule.getCurrentAngle()));
-        // SmartDashboard.putNumber("Back Right Module Angle", Math.toDegrees(backRightModule.getCurrentAngle()));
-      
+        // SmartDashboard.putNumber("Front Left Module Angle",
+        // Math.toDegrees(frontLeftModule.getCurrentAngle()));
+        // SmartDashboard.putNumber("Front Right Module Angle",
+        // Math.toDegrees(frontRightModule.getCurrentAngle()));
+        // SmartDashboard.putNumber("Back Left Module Angle",
+        // Math.toDegrees(backLeftModule.getCurrentAngle()));
+        // SmartDashboard.putNumber("Back Right Module Angle",
+        // Math.toDegrees(backRightModule.getCurrentAngle()));
+
     }
 
-   
-   public void drive( double  left, double right) {
-    robotDrive.tankDrive(left, right);
-   }
-
+    public void drive(double left, double right) {
+        robotDrive.tankDrive(left, right);
+    }
 
     public void setToBrakeMode() {
         FrontLeftDriveMotor.setNeutralMode(NeutralMode.Brake);

@@ -24,7 +24,7 @@ public final class Constants {
     public static final int TALON_DRIVE_FRONT_LEFT = 3;
     public static final int TALON_DRIVE_FRONT_RIGHT = 4;
 
-    public static final int ELEVATOR = 7;
+    public static final int CANNON_ID = 7;
 
     public static final int PCMCAN = 30;
 

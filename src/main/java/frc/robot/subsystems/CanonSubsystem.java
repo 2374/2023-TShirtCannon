@@ -20,7 +20,7 @@ public class CanonSubsystem extends SubsystemBase {
 
     public CanonSubsystem() {
         System.out.println("NEW CANON");
-        canonMotor = new WPI_TalonSRX(Constants.ELEVATOR);
+        canonMotor = new WPI_TalonSRX(Constants.CANNON_ID);
         canonMotor.setNeutralMode(NeutralMode.Brake);
 
         // to deploy and retrack the intake requires pneumatics
